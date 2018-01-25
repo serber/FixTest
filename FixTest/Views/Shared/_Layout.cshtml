@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FixTest</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    </environment>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Мониторинг</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-action="Logout" asp-controller="Login">Выйти</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-action="Index" asp-controller="Login">Войти</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2018 - FixTest</p>
+        </footer>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    </environment>
+</body>
+</html>

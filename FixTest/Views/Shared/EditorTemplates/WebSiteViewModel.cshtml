@@ -1,0 +1,15 @@
+﻿@model WebSiteViewModel
+
+<div class="form-group">
+    <label asp-for="Url"></label>
+    <input asp-for="Url" class="form-control" />
+    <span asp-validation-for="Url" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="CheckInterval"></label>
+    <input asp-for="CheckInterval" class="form-control" />
+    <span asp-validation-for="CheckInterval" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <button type="submit" class="btn btn-default">Сохранить</button>
+</div>

@@ -1,0 +1,47 @@
+﻿@using FixTest.Entities
+@model IReadOnlyCollection<WebSite>
+
+@{
+    ViewData["Title"] = "Мониторинг сайтов";
+}
+
+<h1 class="page-header">@ViewData["Title"]</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    <p><a class="btn btn-default" asp-action="Add" asp-controller="Home">Добавить сайт</a></p>
+}
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Адрес</th>
+                    <th scope="col">Доступен</th>
+                    <th scope="col">Дата проверки</th>
+                    <th scope="col">Интервал проверки (сек.)</th>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <th scope="col"></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (WebSite webSite in Model)
+                {
+                    <tr>
+                        <td scope="row">@Html.DisplayFor(x => webSite.Id)</td>
+                        <td>@Html.DisplayFor(x => webSite.Url)</td>
+                        <td>@Html.DisplayFor(x => webSite.IsAvailable)</td>
+                        <td>@Html.DisplayFor(x => webSite.LastCheckedAt)</td>
+                        <td>@Html.DisplayFor(x => webSite.CheckInterval)</td>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@webSite.Id">Редактировать</a></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

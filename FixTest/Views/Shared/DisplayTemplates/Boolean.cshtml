@@ -1,0 +1,14 @@
+﻿@model bool?
+
+@if (!Model.HasValue)
+{
+    <span>-</span>
+}
+else if (Model.Value)
+{
+    <span>Да</span>
+}
+else
+{
+    <span>Нет</span>
+}

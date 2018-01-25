@@ -1,0 +1,10 @@
+﻿@model DateTimeOffset?
+
+@if (Model.HasValue)
+{
+    <span title="@Model.Value.ToString("t")">@Model.Value.ToString("F")</span>
+}
+else
+{
+    <span>-</span>
+}
