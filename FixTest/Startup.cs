@@ -28,7 +28,7 @@ namespace FixTest
             services.AddSingleton(provider => (IHostedService) provider.GetRequiredService<IScheduleService>());
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                    .AddCookie(o => o.LoginPath = new PathString("/login"));
+                    .AddCookie(o => o.LoginPath = new PathString("/account/login"));
 
             services.AddDbContext<FixDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FixConnection"), builder => builder.MigrationsAssembly("FixTest")));
 

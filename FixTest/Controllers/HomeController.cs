@@ -3,6 +3,7 @@ using FixTest.Entities;
 using Microsoft.AspNetCore.Mvc;
 using FixTest.Models;
 using FixTest.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FixTest.Controllers
 {
@@ -23,12 +24,14 @@ namespace FixTest.Controllers
         }
 
         [HttpGet("~/add")]
+        [Authorize]
         public IActionResult Add()
         {
             return View();
         }
 
         [HttpPost("~/add")]
+        [Authorize]
         public async Task<IActionResult> Add(WebSiteViewModel model)
         {
             WebSite webSite = await _webSiteService.Add(model.Url, model.CheckInterval);
@@ -39,6 +42,7 @@ namespace FixTest.Controllers
         }
 
         [HttpGet("~/edit/{id:long}")]
+        [Authorize]
         public async Task<IActionResult> Edit(long id)
         {
             WebSite webSite = await _webSiteService.Get(id);
@@ -57,6 +61,7 @@ namespace FixTest.Controllers
         }
 
         [HttpPost("~/edit/{id:long}")]
+        [Authorize]
         public async Task<IActionResult> Edit(long id, WebSiteViewModel model)
         {
             if (!ModelState.IsValid)
